@@ -2,20 +2,23 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Breeds from "./pages/Breeds";
 import Favorites from "./pages/Favorites";
+import { routing } from "./config/routing";
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {/* Home with cat modal */}
-        <Route path="/cat/:catId" element={<Home />} />
-        <Route path="/breeds" element={<Breeds />} />
-        {/* Breeds with breed modal */}
-        <Route path="/breeds/:breedId" element={<Breeds />} />
-        <Route path="/favorites" element={<Favorites />} />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Routes>
+          <Route path={routing.home()} element={<Home />} />
+          {/* Home with cat modal */}
+          <Route path={routing.cat()} element={<Home />} />{" "}
+          <Route path={routing.breeds()} element={<Breeds />} />
+          {/* Breeds with breed modal */}
+          <Route path={routing.breed()} element={<Breeds />} />{" "}
+          <Route path={routing.favorites()} element={<Favorites />} />
+        </Routes>
+      </Router>
+    </>
   );
 };
 
