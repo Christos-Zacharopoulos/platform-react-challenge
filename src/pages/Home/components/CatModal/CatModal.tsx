@@ -10,6 +10,7 @@ import { Image, ImagePerBreed } from "../../../../api/images/types";
 import { Breed } from "../../../../api/breeds/types";
 import useCopyToClipboard from "../../../../hooks/useCopyToClipboard";
 import useStorageArray from "../../../../hooks/useStorageArray";
+import { FAVORITES_CONST } from "../../../../config/consts";
 
 type CatModalProps = {
   onClose: () => void;
@@ -19,7 +20,11 @@ const CatModal = ({ onClose }: CatModalProps) => {
   const { catId } = useParams();
   const [cat, setCat] = useState<ImagePerBreed | null>(null);
   const { copyToClipboard, isCopied } = useCopyToClipboard();
-  const { items: favorites, addItem, removeItem } = useStorageArray("favorite");
+  const {
+    items: favorites,
+    addItem,
+    removeItem,
+  } = useStorageArray(FAVORITES_CONST);
   const [isFavorite, setIsFavorite] = useState(() => {
     return !!favorites.find((fav: ImagePerBreed) => fav.id === catId);
   });

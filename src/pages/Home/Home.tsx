@@ -43,6 +43,10 @@ const Home = () => {
 
   return (
     <div>
+      <h1 className="text-center pb-2">
+        Discover new amazing cats<span>&#127752;</span>
+      </h1>
+
       <List>
         {cats.map((cat) => (
           <ListItem key={cat.id} onClick={() => openModal(cat)}>
