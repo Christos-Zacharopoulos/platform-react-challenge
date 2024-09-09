@@ -6,7 +6,7 @@ import ListItem from "../../components/List/components/ListItem";
 import Button from "../../components/Button";
 import api from "../../api";
 import { Image } from "../../api/images/types";
-import Modal from "../../components/Modal";
+import CatModal from "./components/CatModal";
 
 const Home = () => {
   const [cats, setCats] = useState<Image[]>([]);
@@ -53,7 +53,7 @@ const Home = () => {
       <div className="flex justify-center p-3">
         <Button onClick={fetchRandomCats}>Load More</Button>
       </div>
-      <Modal isOpen={modalCatOpen} onClose={closeModal} />
+      {modalCatOpen && <CatModal onClose={closeModal} />}
     </div>
   );
 };
