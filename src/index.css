@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#root {
+  background: #2A2A2A;
+  padding: 16px;
+  color: #fafafa;
+  min-height: 100vh;
+}
