@@ -13,10 +13,10 @@ const App = () => {
         <Routes>
           <Route path={routing.home()} element={<Home />} />
           {/* Home with cat modal */}
-          <Route path={routing.cat()} element={<Home />} />{" "}
+          <Route path={routing.cat()} element={<Home />} />
           <Route path={routing.breeds()} element={<Breeds />} />
           {/* Breeds with breed modal */}
-          <Route path={routing.breed()} element={<Breeds />} />{" "}
+          <Route path={routing.breed()} element={<Breeds />} />
           <Route path={routing.favorites()} element={<Favorites />} />
         </Routes>
       </Router>

@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../../api";
+import { Image } from "../../api/images/types";
 
 const Home = () => {
-  const [cats, setCats] = useState<any[]>([]);
+  const [cats, setCats] = useState<Image[]>([]);
 
   useEffect(() => {
     fetchRandomCats();
   }, []);
 
   const fetchRandomCats = async () => {
-    const { data } = await axios.get(
-      "https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=beng&api_key=REPLACE_ME"
-    );
+    const { data } = await api.images.batch.get();
 
     setCats((prevCats) => [...prevCats, ...data]);
   };
