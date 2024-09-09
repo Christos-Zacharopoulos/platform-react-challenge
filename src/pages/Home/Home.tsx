@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import api from "../../api";
 import { Image } from "../../api/images/types";
+import Button from "../../components/Button";
+import List from "../../components/List";
+import ListItem from "../../components/List/components/ListItem";
 
 const Home = () => {
   const [cats, setCats] = useState<Image[]>([]);
@@ -17,9 +20,9 @@ const Home = () => {
 
   return (
     <div>
-      <div>
+      <List>
         {cats.map((cat) => (
-          <div key={cat.id}>
+          <ListItem key={cat.id} onClick={() => console.log(cat)}>
             <img
               src={cat.url}
               alt="random cat"
@@ -29,9 +32,12 @@ const Home = () => {
                 margin: "10px",
                 cursor: "pointer",
               }}
-            />
-          </div>
+            />{" "}
+          </ListItem>
         ))}
+      </List>
+      <div className="flex justify-center p-3">
+        <Button onClick={fetchRandomCats}>Load More</Button>
       </div>
     </div>
   );
