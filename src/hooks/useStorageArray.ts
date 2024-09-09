@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import useStorage from "./useStorage";
 
-const useStorageArray = <T>(
+const useStorageArray = (
   key: string,
   initialValue = [],
   storageType = "localStorage"
 ) => {
-  const { getItem, setItem } = useStorage<T>(key, storageType);
+  const { getItem, setItem } = useStorage(key, storageType);
 
   const [items, setItems] = useState(() => {
     const storedValue = getItem();
