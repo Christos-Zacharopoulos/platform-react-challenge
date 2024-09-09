@@ -3,11 +3,13 @@ import Home from "./pages/Home";
 import Breeds from "./pages/Breeds";
 import Favorites from "./pages/Favorites";
 import { routing } from "./config/routing";
+import Navigation from "./components/Navigation";
 
 const App = () => {
   return (
     <>
       <Router>
+        <Navigation />
         <Routes>
           <Route path={routing.home()} element={<Home />} />
           {/* Home with cat modal */}
