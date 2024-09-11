@@ -22,7 +22,7 @@ const Modal = ({
       onClick={onClose}
     >
       <div
-        className=" bg-gray-800 p-3 max-w-screen-xl w-full  rounded-md relative"
+        className=" bg-gray-800 p-3 max-w-screen-xl w-full max-h-[100vh] overflow-auto  rounded-md relative"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="absolute top-4 right-4 ">

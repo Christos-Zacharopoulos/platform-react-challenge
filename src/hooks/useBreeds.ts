@@ -1,14 +1,17 @@
 import { useState, useEffect, useCallback } from "react";
 import api from "../api";
 import { Breed } from "../api/breeds/types";
+import usePaginatedArray from "./usePaginatedArray";
+import useInfiniteScroll from "./useInfiniteScroll";
 
 const useBreeds = () => {
+  const { visibleItems, setInitialArray, loadMoreItems, hasMoreItems } =
+    usePaginatedArray<Breed>(10);
+  const observerRef = useInfiniteScroll(loadMoreItems, hasMoreItems, {});
   const [state, setState] = useState<{
-    data: Breed[];
     error: boolean;
     loading: boolean;
   }>({
-    data: [],
     error: false,
     loading: false,
   });
@@ -20,10 +23,11 @@ const useBreeds = () => {
 
       setState((prevState) => ({
         ...prevState,
-        data: response.data,
         loading: false,
       }));
+      setInitialArray(response.data);
     } catch (e) {
+      setInitialArray([]);
       setState((prevState) => ({
         ...prevState,
         error: true,
@@ -37,7 +41,8 @@ const useBreeds = () => {
   }, []);
 
   return {
-    data: state.data,
+    observerRef,
+    data: visibleItems,
     error: state.error,
     loading: state.loading,
   };
