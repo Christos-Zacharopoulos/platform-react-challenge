@@ -3,16 +3,11 @@ import ListItem from "../../components/List/components/ListItem";
 import Img from "../../components/Img";
 import Button from "../../components/Button";
 import { ImagePerBreed } from "../../api/images/types";
-import useStorageArray from "../../hooks/useStorageArray";
-import { FAVORITES_CONST } from "../../config/consts";
 import { routing } from "../../config/routing";
+import useFavorites from "../../hooks/useFavorites";
 
 const Favorites = () => {
-  const { items: favorites, removeItem } = useStorageArray(FAVORITES_CONST);
-
-  const removeFavorite = (catId: ImagePerBreed["id"]) => {
-    removeItem((cat: ImagePerBreed) => cat.id !== catId);
-  };
+  const { favorites, removeFromFavorites } = useFavorites();
 
   return (
     <div>
@@ -24,7 +19,7 @@ const Favorites = () => {
           favorites.map((cat: ImagePerBreed) => (
             <ListItem key={cat.id}>
               <Img src={cat.url} alt="favorite cat" />
-              <Button onClick={() => removeFavorite(cat.id)}>
+              <Button onClick={() => removeFromFavorites(cat.id)}>
                 Remove from Favorites
               </Button>
             </ListItem>
